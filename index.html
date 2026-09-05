@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>DevOps Portal & Control Center</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --accent-color: #38bdf8;
+            --status-online: #22c55e;
+            --status-offline: #ef4444;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid #334155;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            border-color: var(--accent-color);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .card-title-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        .service-icon {
+            font-size: 1.8rem;
+        }
+
+        .service-icon-img {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #64748b; /* אפור - ברירת מחדל עד לבדיקה */
+        }
+
+        .status-dot.online { background-color: var(--status-online); box-shadow: 0 0 8px var(--status-online); }
+        .status-dot.offline { background-color: var(--status-offline); box-shadow: 0 0 8px var(--status-offline); }
+
+        .card-desc {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>DevOps Internal Portal</h1>
+        <p>מרכז שליטה וניהול תשתית הקלאסטר</p>
+    </header>
+
+    <main class="grid-container">
+
+        <!-- Jenkins -->
+        <a href="http://pi1.local:5001" target="_blank" class="card" data-url="http://pi1.local:5001/">
+            <div class="card-header">
+                <div class="card-title-group">
+                    <i class="fa-brands fa-jenkins service-icon" style="color: #d33833;"></i>
+                    <span class="card-title">Jenkins</span>
+                </div>
+                <span class="status-dot"></span>
+            </div>
+            <div class="card-desc">ניהול פייפליינים, בניות (Builds) ואוטומציית CI/CD.</div>
+        </a>
+
+        <!-- ArgoCD -->
+        <a href="http://pi1.local:5002" target="_blank" class="card" data-url="http://pi1.local:5002">
+            <div class="card-header">
+                <div class="card-title-group">
+                    <svg class="service-icon-img" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L3 7v10l9 5 9-5V7l-9-5zm0 2.2L18.8 8 12 11.8 5.2 8 12 4.2zM5 9.2l6 3.3v6.7l-6-3.3V9.2zm14 0v6.7l-6 3.3v-6.7l6-3.3z" fill="#EF6C00"/>
+                    </svg>
+                <span class="card-title">ArgoCD</span>
+                </div>
+            <span class="status-dot"></span>
+            </div>
+                <div class="card-desc">ניהול פריסות בשיטת GitOps עבור הקלאסטר.</div>
+        </a>
+
+        <!-- Prometheus -->
+        <a href="http://prometheus.local" target="_blank" class="card" data-url="http://prometheus.local">
+            <div class="card-header">
+                <div class="card-title-group">
+                    <svg class="service-icon-img" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 16h-2v-2h2v2zm0-4h-2V7h2v7z" fill="#E6522C"/>
+                        <path d="M12 4a8 8 0 100 16 8 8 0 000-16zm1 13h-2v-2h2v2zm0-4h-2V8h2v5z" fill="#E6522C"/>
+                    </svg>
+                    <span class="card-title">Prometheus</span>
+                </div>
+                <span class="status-dot"></span>
+            </div>
+            <div class="card-desc">איסוף מטריקות, התראות וניטור בזמן אמת.</div>
+        </a>
+
+        <!-- Grafana -->
+        <a href="http://grafana.local" target="_blank" class="card" data-url="http://grafana.local">
+            <div class="card-header">
+                <div class="card-title-group">
+                    <i class="fa-solid fa-chart-line service-icon" style="color: #f97316;"></i>
+                    <span class="card-title">Grafana</span>
+                </div>
+                <span class="status-dot"></span>
+            </div>
+            <div class="card-desc">ויזואליזציה של דשבורדים ומטריקות תשתית.</div>
+        </a>
+
+        <!-- GitHub -->
+        <a href="https://github.com/dolev225/dolev225" target="_blank" class="card" data-url="https://github.com/dolev225/dolev225">
+            <div class="card-header">
+                <div class="card-title-group">
+                    <i class="fa-brands fa-github service-icon" style="color: #ffffff;"></i>
+                    <span class="card-title">GitHub</span>
+                </div>
+                <span class="status-dot"></span>
+            </div>
+            <div class="card-desc">github repo project.</div>
+        </a>
+
+    </main>
+
+    <script>
+        // בדיקת Health Check פשוטה לכל קובייה
+        async function checkHealth() {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(async (card) => {
+                const url = card.getAttribute('data-url');
+                const dot = card.querySelector('.status-dot');
+                
+                try {
+                    // מבצעים בקשת fetch קלה לבדוק זמינות
+                    const response = await fetch(url, { mode: 'no-cors', cache: 'no-cache' });
+                    dot.className = 'status-dot online';
+                } catch (error) {
+                    dot.className = 'status-dot offline';
+                }
+            });
+        }
+
+        // הרצה ראשונית ורענון כל 30 שניות
+        checkHealth();
+        setInterval(checkHealth, 30000);
+    </script>
+</body>
+</html>
